@@ -1,3 +1,5 @@
+#MANUAL DE USUÁRIO
+
 O Sistema de Gerenciamento de Treinos permite registrar, visualizar e gerenciar treinos de forma prática, armazenando os dados em arquivos .txt. Abaixo estão as principais funcionalidades:
 
 Adicionar Treino
