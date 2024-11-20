@@ -47,9 +47,19 @@ def visualizar_treinos():
     treinos = carregar_treinos()
     if not treinos:
         print("Nenhum treino registrado ainda.")
-    else:
-        for treino in treinos:
-            print(f"Data: {treino['Data']}, Distância: {treino['Distância']} km, Tempo: {treino['Tempo']} min, Localização: {treino['Localização']}, Clima: {treino['Clima']}")
+        return
+
+    treinos_agrupados = {}
+    for treino in treinos:
+        localizacao = treino["Localização"]
+        if localizacao not in treinos_agrupados:
+            treinos_agrupados[localizacao] = []
+        treinos_agrupados[localizacao].append(treino)
+
+    for localizacao, grupo in treinos_agrupados.items():
+        print(f"\nLocalização: {localizacao}")
+        for treino in grupo:
+            print(f"Data: {treino['Data']}, Distância: {treino['Distância']} km, Tempo: {treino['Tempo']} min, Clima: {treino['Clima']}")
 
 def atualizar_treino():
     data = input("Digite a data do treino que deseja atualizar (DD/MM/AAAA): ")
