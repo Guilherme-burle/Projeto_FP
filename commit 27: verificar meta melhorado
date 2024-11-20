@@ -184,6 +184,12 @@ def definir_meta():
         except ValueError:
             print("Erro: Por favor, insira um valor numérico válido para a meta.")
 
+    meta = f"{tipo},{valor}\n"
+    with open("metas.txt", "w") as file:
+        file.write(meta)
+    print("Meta definida com sucesso!")
+
+
 def verificar_meta():
     try:
         with open("metas.txt", "r") as file:
