@@ -1,0 +1,53 @@
+import os
+os.system('cls')
+
+def salvar_treino(treino):
+    with open("treinos.txt", "a") as file:
+        file.write(f"{treino['Data']},{treino['Distância']},{treino['Tempo']},{treino['Localização']},{treino['Clima']}\n")
+
+def carregar_treinos():
+    treinos = []
+    try:
+        with open("treinos.txt", "r") as file:
+            for linha in file:
+                data, distancia, tempo, localizacao, clima = linha.strip().split(",")
+                treinos.append({
+                    "Data": data,
+                    "Distância": float(distancia),
+                    "Tempo": int(tempo),
+                    "Localização": localizacao,
+                    "Clima": clima
+                })
+    except FileNotFoundError:
+        print("Arquivo de treinos não encontrado. Um novo será criado ao adicionar dados.")
+    except ValueError:
+        print("Erro ao processar dados do treino. Verifique o formato do arquivo.")
+    return treinos
+
+def adicionar_treino():
+    try:
+        data = input("Digite a data (DD/MM/AAAA): ")
+        distancia = float(input("Digite a distância em km: "))
+        tempo = int(input("Digite o tempo em minutos: "))
+        localizacao = input("Digite a localização: ")
+        clima = input("Digite as condições climáticas: ")
+
+        treino = {
+            "Data": data,
+            "Distância": distancia,
+            "Tempo": tempo,
+            "Localização": localizacao,
+            "Clima": clima
+        }
+        salvar_treino(treino)
+        print("Treino registrado com sucesso!")
+    except ValueError:
+        print("Erro: Insira um número válido para distância e tempo.")
+
+def visualizar_treinos():
+    treinos = carregar_treinos()
+    if not treinos:
+        print("Nenhum treino registrado ainda.")
+    else:
+        for treino in treinos:
+            print(f"Data: {treino['Data']}, Distância: {treino['Distância']} km, Tempo: {treino['Tempo']} min, Localização: {treino['Localização']}, Clima: {treino['Clima']}")
