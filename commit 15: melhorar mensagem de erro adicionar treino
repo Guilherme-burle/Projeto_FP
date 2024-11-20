@@ -43,13 +43,6 @@ def adicionar_treino():
         print("Treino registrado com sucesso!")
     except ValueError as e:
         print(f"Erro: {e}. Insira um número válido para distância e tempo.")
-def visualizar_treinos():
-    treinos = carregar_treinos()
-    if not treinos:
-        print("Nenhum treino registrado ainda.")
-    else:
-        for treino in treinos:
-            print(f"Data: {treino['Data']}, Distância: {treino['Distância']} km, Tempo: {treino['Tempo']} min, Localização: {treino['Localização']}, Clima: {treino['Clima']}")
 
 def atualizar_treino():
     data = input("Digite a data do treino que deseja atualizar (DD/MM/AAAA): ")
