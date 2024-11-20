@@ -168,19 +168,7 @@ def calcular_media():
 
 def definir_meta():
     tipo = input("Digite o tipo de meta (distância/tempo): ").strip().lower()
-    if tipo not in ["distancia", "tempo"]:
-        print("Erro: Tipo de meta inválido. Escolha 'distância' ou 'tempo'.")
-        return
-
-    try:
-        valor = float(input("Digite o valor da meta: "))
-        if valor <= 0:
-            print("Erro: O valor da meta deve ser positivo.")
-            return
-    except ValueError:
-        print("Erro: Insira um valor numérico válido para a meta.")
-        return
-
+    valor = input("Digite o valor da meta: ")
     meta = f"{tipo},{valor}\n"
     with open("metas.txt", "w") as file:
         file.write(meta)
