@@ -101,7 +101,8 @@ def filtrar_por_distancia():
         else:
             print("Nenhum treino encontrado nesse intervalo.")
     except ValueError:
-        print("Erro: Insira um número válido para distância.")
+        print("Erro: Insira um número válido para distância. Certifique-se de usar apenas números")
+
 
 def filtrar_por_tempo():
     try:
