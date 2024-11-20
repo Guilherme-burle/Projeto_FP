@@ -167,12 +167,22 @@ def calcular_media():
     print(f"Média de pace: {media_pace:.2f} min/km")
 
 def definir_meta():
-    tipo = input("Digite o tipo de meta (distância/tempo): ").strip().lower()
-    valor = input("Digite o valor da meta: ")
-    meta = f"{tipo},{valor}\n"
-    with open("metas.txt", "w") as file:
-        file.write(meta)
-    print("Meta definida com sucesso!")
+    while True:
+        tipo = input("Digite o tipo de meta (distância/tempo): ").strip().lower()
+        if tipo == "distancia" or tipo == "tempo":
+            break
+        else:
+            print("Opção inválida. Por favor, escolha 'distância' ou 'tempo'.")
+    
+    while True:
+        try:
+            valor = float(input("Digite o valor da meta: "))
+            if valor <= 0:
+                print("O valor da meta deve ser positivo. Tente novamente.")
+            else:
+                break
+        except ValueError:
+            print("Erro: Por favor, insira um valor numérico válido para a meta.")
 
 def verificar_meta():
     try:
