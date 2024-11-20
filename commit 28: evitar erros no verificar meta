@@ -168,6 +168,9 @@ def calcular_media():
 
 def definir_meta():
     tipo = input("Digite o tipo de meta (distância/tempo): ").strip().lower()
+    if tipo != "distancia" and tipo != "tempo":
+        print('Opção inválida')
+        return
     valor = input("Digite o valor da meta: ")
     meta = f"{tipo},{valor}\n"
     with open("metas.txt", "w") as file:
@@ -184,11 +187,8 @@ def verificar_meta():
         tipo = tipo.lower()
         if tipo == "distancia":
             total = sum(treino["Distância"] for treino in treinos)
-        elif tipo == "tempo": 
+        else: 
             total = sum(treino["Tempo"] for treino in treinos)
-        else:
-        print('Opção inválida')
-        return
 
         if total >= valor:
             print("Meta atingida!")
